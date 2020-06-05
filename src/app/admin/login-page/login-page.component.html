@@ -7,8 +7,6 @@
     class="alert alert-danger"
     *ngIf = "authService.errorMessage$ | async as message"
   >
-    <!-- *ngIf = "authService.errorMessage" -->
-    <!-- {{ authService.errorMessage }} -->
     {{ message }}
   </div>
 
@@ -24,10 +22,10 @@
     <input id="email" type="email" formControlName="email" />
     <div
       class="validation"
-      *ngIf = "form.get('email').touched && form.get('email').invalid"
+      *ngIf = "form.get('email').touched"
     >
-      <small *ngIf = "form.get('email').errors.required">Обязательное поле</small>
-      <small *ngIf = "form.get('email').errors.email">Введите валидный email</small>
+      <small *ngIf = "form.get('email').hasError('required')">Обязательное поле</small>
+      <small *ngIf = "form.get('email').hasError('email')">Введите валидный email</small>
     </div>
   </div>
 
@@ -41,10 +39,10 @@
     <input id="password" type="password" formControlName="password" />
     <div
       class="validation"
-      *ngIf = "form.get('password').touched && form.get('password').invalid"
+      *ngIf = "form.get('password').touched"
     >
-      <small *ngIf = "form.get('password').errors.required">Обязательное поле</small>
-      <small *ngIf = "form.get('password').errors.minlength">
+      <small *ngIf = "form.get('password').hasError('required')">Обязательное поле</small>
+      <small *ngIf = "form.get('password').hasError('minlength')">
         Пароль должен состоять минимум из {{ form.get('password').errors.minlength.requiredLength }} символов.
         Введено {{ form.get('password').errors.minlength.actualLength }}
         из {{ form.get('password').errors.minlength.requiredLength }}

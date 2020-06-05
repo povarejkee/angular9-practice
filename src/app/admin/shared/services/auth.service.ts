@@ -7,7 +7,6 @@ import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
-  //public errorMessage = ''
   public errorMessage$: Subject<string> = new Subject<string>()
 
   constructor(private http: HttpClient) { }
@@ -37,15 +36,12 @@ export class AuthService {
 
     switch (message) {
       case 'INVALID_EMAIL':
-        //this.errorMessage = 'Невалидный email'
         this.errorMessage$.next('Невалидный email')
         break
       case 'INVALID_PASSWORD':
-        //this.errorMessage = 'Неверный пароль'
         this.errorMessage$.next('Неверный пароль')
         break
       case 'EMAIL_NOT_FOUND':
-        //this.errorMessage = 'Неверный email'
         this.errorMessage$.next('Неверный email')
         break
     }
