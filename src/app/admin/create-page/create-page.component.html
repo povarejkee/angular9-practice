@@ -1,1 +1,55 @@
-<p>create-page works!</p>
+<form
+  [formGroup] = "form"
+  (ngSubmit) = "submit()"
+>
+  <h2>Добавление поста</h2>
+
+  <div
+    class="form-control"
+    [ngClass] = "{
+      invalid: form.get('author').touched && form.get('author').invalid
+    }"
+  >
+    <label for="author">Автор:</label>
+    <input type="text" id="author" formControlName="author" />
+    <div
+      class="validation"
+      *ngIf = "form.get('author').touched"
+    >
+      <small *ngIf = "form.get('author').hasError('required')">Обязательное поле</small>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass] = "{
+      invalid: form.get('title').touched && form.get('title').invalid
+    }"
+  >
+    <label for="title">Заголовок:</label>
+    <input type="text" id="title" formControlName="title" />
+    <div
+      class="validation"
+      *ngIf = "form.get('title').touched"
+    >
+      <small *ngIf = "form.get('title').hasError('required')">Обязательное поле</small>
+    </div>
+  </div>
+
+  <div
+    class="form-control"
+    [ngClass] = "{
+      invalid: form.get('text').touched && form.get('text').invalid
+    }"
+  >
+    <label>Текст:</label>
+    <quill-editor formControlName="text"></quill-editor>
+  </div>
+
+  <button
+    class="btn btn-block btn-dark"
+    type="submit"
+  >
+    Добавить
+  </button>
+</form>

@@ -14,12 +14,11 @@ export class AdminLayoutComponent implements OnInit {
     public authService: AuthService
   ) {}
 
-  ngOnInit(): void {
-    console.log(this.authService.token) // временная проверка
-  }
+  ngOnInit(): void {}
 
   logout($event: MouseEvent) {
     $event.preventDefault()
+
     this.authService.logout()
     this.router.navigate(['/admin', 'login'])
   }

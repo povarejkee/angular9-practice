@@ -6,15 +6,18 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { ReactiveFormsModule } from "@angular/forms";
-import {AuthService} from './shared/services/auth.service';
-import {SharedModule} from '../shared/shared.module';
+import { SharedModule } from '../shared/shared.module';
+import { ContentGuard } from './shared/services/content.guard';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { LoginGuard } from './shared/services/login.guard';
 
 @NgModule({
   declarations: [
     AdminLayoutComponent,
     LoginPageComponent,
     CreatePageComponent,
-    DashboardPageComponent
+    DashboardPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     CommonModule,
@@ -22,6 +25,6 @@ import {SharedModule} from '../shared/shared.module';
     ReactiveFormsModule,
     SharedModule
   ],
-  providers: [AuthService]
+  providers: [ContentGuard, LoginGuard]
 })
 export class AdminModule { }

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
-import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
-import {HomePageComponent} from "./home-page/home-page.component";
-import {PostPageComponent} from "./post-page/post-page.component";
+import { RouterModule, Routes } from "@angular/router";
+import { MainLayoutComponent } from "./shared/components/main-layout/main-layout.component";
+import { HomePageComponent } from "./home-page/home-page.component";
+import { PostPageComponent } from "./post-page/post-page.component";
 
 const routes: Routes = [
   {
@@ -10,7 +10,7 @@ const routes: Routes = [
     component: MainLayoutComponent,
     children: [
       { path: '', component: HomePageComponent},
-      { path: 'post/:id', component: PostPageComponent }
+      { path: 'post/:id', component: PostPageComponent },
     ]
   },
 ]

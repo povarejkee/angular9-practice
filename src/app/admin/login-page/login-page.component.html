@@ -5,9 +5,16 @@
 >
   <div
     class="alert alert-danger"
-    *ngIf = "authService.errorMessage$ | async as message"
+    *ngIf = "authService.errorMessage$ | async as errorMessage"
   >
-    {{ message }}
+    {{ errorMessage }}
+  </div>
+
+  <div
+    class="alert alert-dark"
+    *ngIf = "accessMessage"
+  >
+    {{ accessMessage }}
   </div>
 
   <h2>Вход в панель администратора</h2>

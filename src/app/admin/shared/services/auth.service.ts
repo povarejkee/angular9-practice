@@ -5,11 +5,11 @@ import { Observable, Subject, throwError } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   public errorMessage$: Subject<string> = new Subject<string>()
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   get token(): string {
     const token = localStorage.getItem('auth-token')
@@ -44,14 +44,14 @@ export class AuthService {
       case 'EMAIL_NOT_FOUND':
         this.errorMessage$.next('Неверный email')
         break
+      case 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.':
+        this.errorMessage$.next('Слишком много неудачных попыток входа. Попробуйте позже')
     }
 
     return throwError(error)
   }
 
   login(user: IUser): Observable<any> {
-    user.returnSecureToken = true
-
     return this.http
       .post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
       .pipe(
