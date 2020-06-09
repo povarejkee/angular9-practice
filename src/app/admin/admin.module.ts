@@ -5,11 +5,12 @@ import { AdminRoutingModule } from "./admin-routing.module";
 import { LoginPageComponent } from './login-page/login-page.component';
 import { CreatePageComponent } from './create-page/create-page.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { ContentGuard } from './shared/services/content.guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginGuard } from './shared/services/login.guard';
+import { FilterPostsPipe } from './shared/filter-posts.pipe';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,15 @@ import { LoginGuard } from './shared/services/login.guard';
     LoginPageComponent,
     CreatePageComponent,
     DashboardPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    FilterPostsPipe
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ],
   providers: [ContentGuard, LoginGuard]
 })

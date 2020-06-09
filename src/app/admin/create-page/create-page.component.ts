@@ -10,6 +10,7 @@ import {PostsService} from '../../shared/posts.service';
 })
 export class CreatePageComponent implements OnInit {
   form: FormGroup
+  public created: boolean = false
 
   constructor(private postsService: PostsService) {}
 
@@ -22,6 +23,8 @@ export class CreatePageComponent implements OnInit {
   }
 
   submit() {
+    this.created = true
+
     if (this.form.invalid) {
       return
     }
@@ -35,6 +38,7 @@ export class CreatePageComponent implements OnInit {
 
     this.postsService.create(post)
       .subscribe(() => {
+        this.created = false
         this.form.reset()
       })
   }

@@ -9,8 +9,12 @@ import { map } from 'rxjs/operators';
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  create(post: IPost): Observable<any> { // wtf? Интерфейс IFirebaseDBPost не подходит
-    return this.http.post(`${environment.firebaseDBUrl}/posts.json`, post)
+  create(post: IPost): Observable<IFirebaseDBPost> {
+    return this.http.post<IFirebaseDBPost>(`${environment.firebaseDBUrl}/posts.json`, post)
+  }
+
+  remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.firebaseDBUrl}/posts/${id}.json`)
   }
 
   getPosts(): Observable<IPost[]> {
