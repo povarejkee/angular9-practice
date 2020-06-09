@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: 'login', component: LoginPageComponent, canActivate: [LoginGuard] },
       { path: 'dashboard', component: DashboardPageComponent, canActivate: [ContentGuard]},
       { path: 'create', component: CreatePageComponent, canActivate: [ContentGuard]},
+      { path: 'post/edit/:id', component: null, canActivate: [ContentGuard]},
       { path: '**', component: ErrorPageComponent }
     ]
   }

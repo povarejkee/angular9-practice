@@ -23,6 +23,10 @@ export interface IFirebaseAuthResponse {
   expiresIn: string
 }
 
-export interface IFirebaseDBResponse {
+export interface IFirebaseDBPost {
   name: string
+}
+
+export interface IFirebaseDBGet {
+  [id: string]: IPost
 }
