@@ -6,7 +6,8 @@ import { DashboardPageComponent } from "./dashboard-page/dashboard-page.componen
 import { CreatePageComponent } from "./create-page/create-page.component";
 import { ContentGuard } from './shared/services/content.guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
-import {LoginGuard} from './shared/services/login.guard';
+import { LoginGuard } from './shared/services/login.guard';
+import { EditPageComponent } from './edit-page/edit-page.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,7 @@ const routes: Routes = [
       { path: 'login', component: LoginPageComponent, canActivate: [LoginGuard] },
       { path: 'dashboard', component: DashboardPageComponent, canActivate: [ContentGuard]},
       { path: 'create', component: CreatePageComponent, canActivate: [ContentGuard]},
-      { path: 'post/edit/:id', component: null, canActivate: [ContentGuard]},
+      { path: 'post/edit/:id', component: EditPageComponent, canActivate: [ContentGuard]},
       { path: '**', component: ErrorPageComponent }
     ]
   }

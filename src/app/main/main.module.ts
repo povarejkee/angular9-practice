@@ -5,6 +5,7 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {PostPageComponent} from "./post-page/post-page.component";
 import {PostComponent} from "./shared/components/post/post.component";
 import {MainRoutingModule} from "./main-routing.module";
+import {QuillModule} from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -13,9 +14,10 @@ import {MainRoutingModule} from "./main-routing.module";
     PostPageComponent,
     PostComponent
   ],
-  imports: [
-    CommonModule,
-    MainRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        QuillModule
+    ]
 })
 export class MainModule { }

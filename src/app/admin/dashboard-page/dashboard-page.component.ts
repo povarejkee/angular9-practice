@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PostsService } from '../../shared/posts.service';
 import { Subscription } from 'rxjs';
 import { IPost } from '../../shared/interfaces';
+import { AlertService } from '../shared/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -15,7 +16,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   inputValue = ''
   isLoading = true
 
-  constructor(private postsService: PostsService) {}
+  constructor(
+    private postsService: PostsService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     this.getSub = this.postsService.getPosts()
@@ -29,6 +33,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     this.deleteSub = this.postsService.remove(id)
       .subscribe(() => {
         this.posts = this.posts.filter((post: IPost) => post.id !== id)
+        this.alertService.callAlert({
+          text: `Пост ${id} удален!`,
+          type: 'danger'
+        })
       })
   }
 

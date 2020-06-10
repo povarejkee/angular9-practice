@@ -11,6 +11,9 @@ import { ContentGuard } from './shared/services/content.guard';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { LoginGuard } from './shared/services/login.guard';
 import { FilterPostsPipe } from './shared/filter-posts.pipe';
+import { EditPageComponent } from './edit-page/edit-page.component';
+import { AlertComponent } from './shared/components/alert/alert.component';
+import { AlertService } from './shared/services/alert.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { FilterPostsPipe } from './shared/filter-posts.pipe';
     CreatePageComponent,
     DashboardPageComponent,
     ErrorPageComponent,
-    FilterPostsPipe
+    FilterPostsPipe,
+    EditPageComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
@@ -28,6 +33,6 @@ import { FilterPostsPipe } from './shared/filter-posts.pipe';
     SharedModule,
     FormsModule
   ],
-  providers: [ContentGuard, LoginGuard]
+  providers: [ContentGuard, LoginGuard, AlertService]
 })
 export class AdminModule { }

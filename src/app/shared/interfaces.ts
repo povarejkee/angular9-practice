@@ -13,7 +13,7 @@ export interface IUser {
 export interface IPost {
   author: string
   title: string
-  text: boolean
+  text: string
   id?: string
   date: Date
 }
@@ -29,4 +29,9 @@ export interface IFirebaseDBPost {
 
 export interface IFirebaseDBGet {
   [id: string]: IPost
+}
+
+export interface IAlert {
+  text: string
+  type: 'success' | 'dark' | 'danger'
 }

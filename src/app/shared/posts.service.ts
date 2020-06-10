@@ -17,6 +17,15 @@ export class PostsService {
     return this.http.delete<void>(`${environment.firebaseDBUrl}/posts/${id}.json`)
   }
 
+  update(post: IPost): Observable<IPost> {
+    return this.http.patch<IPost>(`${environment.firebaseDBUrl}/posts/${post.id}.json`, post)
+  }
+
+  getSinglePost(id: string): Observable<IPost> {
+    return this.http.get<IPost>(`${environment.firebaseDBUrl}/posts/${id}.json`)
+      .pipe( map((response: IPost) => ({ ...response, id })) )
+  }
+
   getPosts(): Observable<IPost[]> {
     return this.http.get(`${environment.firebaseDBUrl}/posts.json`)
       .pipe(map((response: IFirebaseDBGet) => {
