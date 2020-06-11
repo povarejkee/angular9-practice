@@ -7,7 +7,7 @@ export class AlertService {
   public alert$: Subject<IAlert> = new Subject<IAlert>()
 
   callAlert(options: IAlert): void {
-    return this.alert$.next({ ...options })
+    this.alert$.next({ ...options })
   }
 
   constructor() {}
