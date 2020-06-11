@@ -1,6 +1,6 @@
 export interface IEnvironment {
-  production: boolean,
-  apiKey: string,
+  production: boolean
+  apiKey: string
   firebaseDBUrl: string
 }
 

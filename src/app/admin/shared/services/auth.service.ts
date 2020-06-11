@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IFirebaseAuthResponse, IUser } from '../../../shared/interfaces';
-import { Observable, Subject, throwError } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { catchError, tap } from 'rxjs/operators';
+import { Injectable } from '@angular/core'
+import { HttpClient, HttpErrorResponse } from '@angular/common/http'
+import { IFirebaseAuthResponse, IUser } from '../../../shared/interfaces'
+import { Observable, Subject, throwError } from 'rxjs'
+import { environment } from '../../../../environments/environment'
+import { catchError, tap } from 'rxjs/operators'
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -23,7 +23,7 @@ export class AuthService {
     return token
   }
 
-  setToken(response: IFirebaseAuthResponse) {
+  setToken(response: IFirebaseAuthResponse): void {
     const ms = Date.now() + Number(response.expiresIn) * 1000
     const expiresDate = new Date(ms)
 
@@ -31,7 +31,7 @@ export class AuthService {
     localStorage.setItem('auth-expires', String(expiresDate))
   }
 
-  errorHandling = (error: HttpErrorResponse) => {
+  errorHandling = (error: HttpErrorResponse): Observable<never> => {
     const { message } = error.error.error
 
     switch (message) {
@@ -45,7 +45,9 @@ export class AuthService {
         this.errorMessage$.next('Неверный email')
         break
       case 'TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts. Please try again later.':
-        this.errorMessage$.next('Слишком много неудачных попыток входа. Попробуйте позже')
+        this.errorMessage$.next(
+          'Слишком много неудачных попыток входа. Попробуйте позже'
+        )
     }
 
     return throwError(error)
@@ -53,14 +55,14 @@ export class AuthService {
 
   login(user: IUser): Observable<any> {
     return this.http
-      .post(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`, user)
-      .pipe(
-        tap(this.setToken),
-        catchError(this.errorHandling)
+      .post(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`,
+        user
       )
+      .pipe(tap(this.setToken), catchError(this.errorHandling))
   }
 
-  logout() {
+  logout(): void {
     localStorage.clear()
   }
 

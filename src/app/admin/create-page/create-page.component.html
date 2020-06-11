@@ -44,6 +44,12 @@
   >
     <label>Текст:</label>
     <quill-editor formControlName="text"></quill-editor>
+    <div
+      class="validation"
+      *ngIf = "form.get('text').touched"
+    >
+      <small *ngIf = "form.get('text').hasError('required')">Обязательное поле</small>
+    </div>
   </div>
 
   <button

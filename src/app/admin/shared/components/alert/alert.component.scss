@@ -1,7 +1,9 @@
 .alert {
   position: fixed;
+  z-index: 10;
   min-width: 200px;
   right: 50px;
   top: 50px;
   text-align: center;
+  padding: 10px;
 }

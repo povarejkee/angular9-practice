@@ -1,30 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Provider } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './admin/shared/services/auth.interceptor';
-import { SharedModule } from './shared/shared.module';
-import { registerLocaleData } from '@angular/common';
-import ru from '@angular/common/locales/ru';
+import { BrowserModule } from '@angular/platform-browser'
+import { NgModule, Provider } from '@angular/core'
+import { AppRoutingModule } from './app-routing.module'
+import { AppComponent } from './app.component'
+import { HTTP_INTERCEPTORS } from '@angular/common/http'
+import { AuthInterceptor } from './admin/shared/services/auth.interceptor'
+import { SharedModule } from './shared/shared.module'
+import { registerLocaleData } from '@angular/common'
+import ru from '@angular/common/locales/ru'
 
 registerLocaleData(ru, 'ru')
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: AuthInterceptor,
-  multi: true
+  multi: true,
 }
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [INTERCEPTOR_PROVIDER],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

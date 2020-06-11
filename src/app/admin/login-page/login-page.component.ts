@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { IUser } from '../../shared/interfaces';
-import { AuthService } from '../shared/services/auth.service';
-import {ActivatedRoute, Params, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { IUser } from '../../shared/interfaces'
+import { AuthService } from '../shared/services/auth.service'
+import { ActivatedRoute, Params, Router } from '@angular/router'
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  form: FormGroup
+  public form: FormGroup
   public submitted: boolean = false
-  public accessMessage = ''
+  public accessMessage: string = ''
 
   constructor(
     public authService: AuthService,
@@ -26,12 +26,12 @@ export class LoginPageComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('ip@test.ru', [
         Validators.required,
-        Validators.email
+        Validators.email,
       ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(6)
-      ])
+        Validators.minLength(6),
+      ]),
     })
   }
 
@@ -40,7 +40,8 @@ export class LoginPageComponent implements OnInit {
       if (qp.loginFirst) {
         this.accessMessage = 'Войдите для получения прав администратора'
       } else if (qp.sessionIsOver) {
-        this.accessMessage = 'Текущая сессия завершена. Войдите снова, чтобы продолжить'
+        this.accessMessage =
+          'Текущая сессия завершена. Войдите снова, чтобы продолжить'
       }
     })
   }
@@ -48,24 +49,21 @@ export class LoginPageComponent implements OnInit {
   submit(): void {
     this.submitted = true
 
-    if (this.form.invalid) {
-      return
-    }
+    if (this.form.invalid) return
 
     const user: IUser = {
       email: this.form.value.email,
       password: this.form.value.password,
-      returnSecureToken: true
+      returnSecureToken: true,
     }
 
-    this.authService.login(user)
-      .subscribe(
-        () => {
+    this.authService.login(user).subscribe(
+      () => {
         this.form.reset()
         this.submitted = false
         this.router.navigate(['/admin', 'dashboard'])
       },
-        () => this.submitted = false
-      )
+      () => (this.submitted = false)
+    )
   }
 }

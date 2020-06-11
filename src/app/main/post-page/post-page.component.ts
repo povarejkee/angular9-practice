@@ -1,19 +1,20 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import { PostsService } from '../../shared/posts.service';
-import { IPost } from '../../shared/interfaces';
-import { ActivatedRoute, Params } from '@angular/router';
-import {switchMap} from 'rxjs/operators';
-import {Subscription} from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core'
+import { PostsService } from '../../shared/posts.service'
+import { IPost } from '../../shared/interfaces'
+import { ActivatedRoute, Params } from '@angular/router'
+import { switchMap } from 'rxjs/operators'
+import { Subscription } from 'rxjs'
 
 @Component({
   selector: 'app-post-page',
   templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.scss']
+  styleUrls: ['./post-page.component.scss'],
 })
 export class PostPageComponent implements OnInit, OnDestroy {
-  post: IPost
-  getSub: Subscription
-  isLoading = true
+  public post: IPost
+  public isLoading: boolean = true
+
+  private getSub: Subscription
 
   constructor(
     private postsService: PostsService,
@@ -36,5 +37,4 @@ export class PostPageComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.getSub) this.getSub.unsubscribe()
   }
-
 }

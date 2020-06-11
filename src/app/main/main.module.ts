@@ -1,23 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {MainLayoutComponent} from "./shared/components/main-layout/main-layout.component";
-import {HomePageComponent} from "./home-page/home-page.component";
-import {PostPageComponent} from "./post-page/post-page.component";
-import {PostComponent} from "./shared/components/post/post.component";
-import {MainRoutingModule} from "./main-routing.module";
-import {QuillModule} from 'ngx-quill';
+import { NgModule } from '@angular/core'
+import { CommonModule } from '@angular/common'
+import { MainLayoutComponent } from './shared/components/main-layout/main-layout.component'
+import { HomePageComponent } from './home-page/home-page.component'
+import { PostPageComponent } from './post-page/post-page.component'
+import { PostComponent } from './shared/components/post/post.component'
+import { MainRoutingModule } from './main-routing.module'
+import { QuillModule } from 'ngx-quill'
 
 @NgModule({
   declarations: [
     MainLayoutComponent,
     HomePageComponent,
     PostPageComponent,
-    PostComponent
+    PostComponent,
   ],
-    imports: [
-        CommonModule,
-        MainRoutingModule,
-        QuillModule
-    ]
+  imports: [CommonModule, MainRoutingModule, QuillModule],
 })
-export class MainModule { }
+export class MainModule {}

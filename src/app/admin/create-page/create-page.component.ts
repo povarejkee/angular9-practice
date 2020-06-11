@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { IPost } from '../../shared/interfaces';
-import { PostsService } from '../../shared/posts.service';
-import { AlertService } from '../shared/services/alert.service';
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { IPost } from '../../shared/interfaces'
+import { PostsService } from '../../shared/posts.service'
+import { AlertService } from '../shared/services/alert.service'
 
 @Component({
   selector: 'app-create-page',
   templateUrl: './create-page.component.html',
-  styleUrls: ['./create-page.component.scss']
+  styleUrls: ['./create-page.component.scss'],
 })
 export class CreatePageComponent implements OnInit {
-  form: FormGroup
-  public created = false
+  public form: FormGroup
+  public created: boolean = false
 
   constructor(
     private postsService: PostsService,
@@ -26,29 +26,26 @@ export class CreatePageComponent implements OnInit {
     })
   }
 
-  submit() {
+  submit(): void {
     this.created = true
 
-    if (this.form.invalid) {
-      return
-    }
+    if (this.form.invalid) return
 
     const post: IPost = {
       author: this.form.value.author,
       title: this.form.value.title,
       text: this.form.value.text,
-      date: new Date()
+      date: new Date(),
     }
 
-    this.postsService.create(post)
-      .subscribe(() => {
-        this.created = false
-        this.alertService.callAlert({
-          text: 'Пост добавлен!',
-          type: 'success'
-        })
-
-        this.form.reset()
+    this.postsService.create(post).subscribe(() => {
+      this.created = false
+      this.alertService.callAlert({
+        text: 'Пост добавлен!',
+        type: 'success',
       })
+
+      this.form.reset()
+    })
   }
 }

@@ -4,13 +4,13 @@
 
 <div class="post" *ngIf = "!isLoading; else loading">
 
-  <div class="header">
+  <div class="post-header">
     <h1>{{ post.title }}</h1>
     <button class="btn btn-link" routerLink="/">Назад</button>
   </div>
 
-  <div class="info">
-    <strong>{{ post.author }}</strong>
+  <div class="post-info">
+    <strong>Автор: {{ post.author }}</strong>
     <small>{{ post.date | date : 'medium' : null : 'ru'}}</small>
   </div>
 

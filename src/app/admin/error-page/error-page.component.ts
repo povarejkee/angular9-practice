@@ -1,17 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { AuthService } from '../shared/services/auth.service'
 
 @Component({
   selector: 'app-error-page',
   templateUrl: './error-page.component.html',
-  styleUrls: ['./error-page.component.scss']
+  styleUrls: ['./error-page.component.scss'],
 })
 export class ErrorPageComponent implements OnInit {
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -22,5 +19,4 @@ export class ErrorPageComponent implements OnInit {
       this.router.navigate(['/admin'])
     }
   }
-
 }

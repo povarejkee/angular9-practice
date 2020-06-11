@@ -27,7 +27,7 @@
       <td>{{ post.author }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.date | date : 'medium' : null : 'ru' }}</td>
-      <td style="text-align: center">
+      <td>
         <button
           class="btn btn-link open"
           [routerLink] = "['/admin', 'post', 'edit', post.id]"

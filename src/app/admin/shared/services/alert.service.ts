@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { IAlert } from '../../../shared/interfaces';
+import { Injectable } from '@angular/core'
+import { Subject } from 'rxjs'
+import { IAlert } from '../../../shared/interfaces'
 
 @Injectable()
 export class AlertService {
@@ -10,5 +10,5 @@ export class AlertService {
     return this.alert$.next({ ...options })
   }
 
-  constructor() { }
+  constructor() {}
 }
